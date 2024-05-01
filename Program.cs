@@ -1,5 +1,4 @@
 ﻿
-
-Transaction myAtmTransaction = new Transaction();
-myAtmTransaction.AtmTransaction();
+StartTransaction myAtmTransaction = new StartTransaction();
+myAtmTransaction.RunTransaction();
 

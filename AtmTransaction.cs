@@ -1,21 +1,18 @@
-﻿public class Account : ITransaction
-{
-    public string Name { get; set; }
-    public int AccountNumber { get; set; }
-    public int Pin { get; set; }
-    public double Balance { get; set; }
+﻿
 
-    public Account(string name, int accountNum, int atmPin, double balance)
+public class AtmTransaction : IAtmTransaction
+{
+    private Account account;
+
+    public AtmTransaction(Account account)
     {
-       this.Name = name;
-       this.AccountNumber = accountNum;
-       this.Pin = atmPin;
-       this.Balance = balance;
+        this.account = account;
     }
+
 
     public void CheckBalance()
     {
-        Console.WriteLine($"Your current balance is: {Balance}");
+        Console.WriteLine($"Your current balance is: {account.Balance}");
     }
 
     public void DepositMoney()
@@ -29,8 +26,8 @@
             Console.Write("Enter the positive valid amount to deposit: ");
         }
 
-        Balance += amount;
-        Console.WriteLine($"{amount} deposited successfully in {Name}'s account. Your new balance is: {Balance}");
+        account.Balance += amount;
+        Console.WriteLine($"{amount} deposited successfully in {account.Name}'s account. Your new balance is: {account.Balance}");
     }
 
     public void WithdrawMoney()
@@ -44,14 +41,14 @@
             Console.Write("Enter the positive valid amount to withdraw: ");
         }
 
-        if (amount > Balance)
+        if (amount > account.Balance)
         {
             Console.WriteLine("Insufficient balance.");
             return;
         }
 
-        Balance -= amount;
-        Console.WriteLine($"{amount} withdrawn successfully. Your new balance is: {Balance}");
+        account.Balance -= amount;
+        Console.WriteLine($"{amount} withdrawn successfully. Your new balance is: {account.Balance}");
     }
 
     public void UpdatePin(List<Account> accounts)
@@ -106,26 +103,22 @@
                 Console.Write("Enter the positive valid amount to transfer: ");
             }
 
-            if (amount > Balance)
+            if (amount > account.Balance)
             {
                 Console.WriteLine("Insufficient balance for transfer.");
                 return;
             }
 
-            Balance -= amount;
+            account.Balance -= amount;
             receiverAccount.Balance += amount;
 
-            Console.WriteLine($"{amount} naira transferred successfully from {Name}'s account to {receiverAccount.Name}'s account.");
-            Console.WriteLine($"Your new balance is: {Balance}");
+            Console.WriteLine($"{amount} naira transferred successfully from {account.Name}'s account to {receiverAccount.Name}'s account.");
+            Console.WriteLine($"Your new balance is: {account.Balance}");
         }
         else
         {
             Console.WriteLine("Receiver account not found.");
         }
     }
-
-    public static Account GetAccountByPin(List<Account> accounts, int inputPin)
-    {
-        return accounts.Find(account => account.Pin == inputPin);
-    }
+ 
 }

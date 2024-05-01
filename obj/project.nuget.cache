@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HUx4wdkYQbKs1p9Lx4i5cDgDDay38OMRC9HM+b0o5/2ajfYY7Urs1sQcDY1SpARzHqmK0Ah93JAkSyaT6BGsIA==",
+  "dgSpecHash": "o5i230eg5a9SMYWi9MrCHo7wX7ZhQTAVG40Rl5tIuwX7yPkwyno30SzZUhMWYAYzJriD/uYHBubD7nT4yoiFKA==",
   "success": true,
   "projectFilePath": "/Users/apple/Documents/Programming Coding/C#/ATM/ATM/ATM.csproj",
-  "expectedPackageFiles": [
-    "/Users/apple/.nuget/packages/microsoft.netcore.app.ref/7.0.18/microsoft.netcore.app.ref.7.0.18.nupkg.sha512",
-    "/Users/apple/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.18/microsoft.aspnetcore.app.ref.7.0.18.nupkg.sha512",
-    "/Users/apple/.nuget/packages/microsoft.netcore.app.host.osx-x64/7.0.18/microsoft.netcore.app.host.osx-x64.7.0.18.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }
