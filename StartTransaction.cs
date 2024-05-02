@@ -7,8 +7,7 @@ public class StartTransaction
 
     public void RunTransaction()
     {
-        RegisteredAccounts registeredAccounts = new RegisteredAccounts();
-        List<Account> activatedAccounts = registeredAccounts.GetAccounts();
+        var activatedAccounts = RegisteredAccounts.GetAccounts();
 
         Authentication authentication = new Authentication(activatedAccounts);
 
