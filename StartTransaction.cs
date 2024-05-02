@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-
+﻿
 public class StartTransaction
 {
     private bool createTransaction = true;
-
-
     public void RunTransaction()
     {
         var activatedAccounts = RegisteredAccounts.GetAccounts();
@@ -13,17 +10,17 @@ public class StartTransaction
 
         while (createTransaction)
         {
-            if (!authentication.StartAuthentication())
+         
+            var selectedAccount = authentication.StartAuthentication();
+            
+            if (selectedAccount == null)
             {
-                Console.WriteLine("Authentication failed. Please try again.");
-                break;
+                Console.WriteLine("Authentication failed. Please try again later.");
             }
 
-            int decision = UserChoice.GetUserChoice();
-
-            var selectedAccount = activatedAccounts.Find(acc => acc.AccountNumber == authentication.InputtedAccountNumber);
-
             IAtmTransaction transaction = new AtmTransaction(selectedAccount);
+
+            int decision = UserChoice.GetUserChoice();
 
             switch (decision)
             {
@@ -50,7 +47,7 @@ public class StartTransaction
                     break;
             }
 
-            createTransaction = ContinueTransactionOrNot.ContinueOrNot(createTransaction);
+            createTransaction = UserChoice.ContinueOrNot(createTransaction);
         }
     }
 

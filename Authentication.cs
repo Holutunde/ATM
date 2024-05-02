@@ -16,15 +16,14 @@
         return account != null;
     }
 
-
-    public bool StartAuthentication()
+    public Account StartAuthentication()
     {
         while (AuthenticateUserAccount)
         {
             Console.Write("Enter your account number: ");
             if (!int.TryParse(Console.ReadLine(), out int inputAccountNumber))
             {
-                Console.WriteLine("Invalid input format. Please enter a numeric account number.");
+                Messages.EnterValidAccountNumber();
                 continue;
             }
 
@@ -49,7 +48,7 @@
                 if (AuthenticateAccount(inputAccountNumber, inputPin))
                 {
                     Console.WriteLine("Correct pin entered.");
-                    return true; 
+                    return account;
                 }
 
                 Console.WriteLine("Incorrect pin!!! Confirm and enter correct pin.");
@@ -59,8 +58,7 @@
             AuthenticateUserAccount = false;
         }
 
-        return false;
+        return null;
     }
-
 
 }
