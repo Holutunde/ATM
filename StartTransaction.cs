@@ -1,18 +1,17 @@
 ﻿
 public class StartTransaction
 {
-    private bool createTransaction = true;
-    public void RunTransaction()
+    public bool createTransaction = true;
+    public void RunTransaction(List<Account> activatedAccounts)
     {
-        var activatedAccounts = RegisteredAccounts.GetAccounts();
-
+       
         Authentication authentication = new Authentication(activatedAccounts);
 
         while (createTransaction)
         {
          
             var selectedAccount = authentication.StartAuthentication();
-            
+
             if (selectedAccount == null)
             {
                 Console.WriteLine("Authentication failed. Please try again later.");
@@ -47,7 +46,7 @@ public class StartTransaction
                     break;
             }
 
-            createTransaction = UserChoice.ContinueOrNot(createTransaction);
+            createTransaction = UserChoice.ContinueOrNot();
         }
     }
 

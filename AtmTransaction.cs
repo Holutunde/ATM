@@ -8,7 +8,33 @@ public class AtmTransaction : IAtmTransaction
     {
         this.account = account;
     }
+    public static void CreateAccount(List<Account> accounts)
+    {
+        Console.Write("Please enter your full name (firstname lastname): ");
+        string? username = Console.ReadLine();
 
+        Console.Write("Enter your 4-digit PIN: ");
+        int pin;
+        while (!int.TryParse(Console.ReadLine(), out pin) || pin < 1000 || pin > 9999)
+        {
+            Console.WriteLine("Invalid input. Please enter a 4-digit PIN.");
+            Console.Write("Enter your 4-digit PIN: ");
+        }
+
+        // Generate a random 10-digit account number
+        Random random = new Random();
+        int min = 100000000; // Minimum 10-digit number (inclusive)
+        int max = 999999999; // Maximum 10-digit number (inclusive)
+        long accountNumber = random.Next(min, max + 1);
+
+        // Create the account and add it to the accounts list
+        double newBalance = 100; // Starting balance
+        Account newAccount = new Account(username, accountNumber, pin, newBalance);
+        accounts.Add(newAccount);
+
+        Console.WriteLine("Account created successfully!");
+        Console.WriteLine($"Your account number is: {accountNumber}");
+    }
 
     public void CheckBalance()
     {

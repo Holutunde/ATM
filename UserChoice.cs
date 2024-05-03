@@ -30,18 +30,48 @@
             }
         }
     }
-
-    public static bool ContinueOrNot(bool createTransaction)
+    public static bool ContinueOrNot()
     {
         Console.Write("Do you want to continue transaction (yes/no): ");
         string? response = Console.ReadLine();
 
         if (response?.ToLower() == "no")
         {
-            createTransaction = false;
             Console.WriteLine("Thank you for using Olutunde Bank.");
+            return false;
         }
 
-        return createTransaction;
+        return true;
+    }
+
+
+    public static int WelcomeATM()
+    {
+        Console.WriteLine("Olutunde Bank, welcome our Esteemed customer");
+        Console.WriteLine("1. Login");
+        Console.WriteLine("2. Register");
+        Console.WriteLine("3. Exit");
+     ;
+
+        int choice;
+
+        while (true)
+        {
+            Console.Write("Enter your choice from 1-3: ");
+            if (!int.TryParse(Console.ReadLine(), out choice))
+            {
+                Console.WriteLine("Invalid input format. Please enter a positive number 1-3.");
+                continue;
+            }
+
+            if (choice >= 1 && choice <= 3)
+            {
+                return choice;
+            }
+            else
+            {
+                Console.WriteLine("Number is not from 1 - 6. Enter a valid number.");
+            }
+        }
     }
 }
