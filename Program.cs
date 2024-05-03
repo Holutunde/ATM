@@ -1,8 +1,11 @@
-﻿
-void Bank (){
+﻿using System.Security.Principal;
+
+void Bank()
+{
 
     StartTransaction myAtmTransaction = new StartTransaction();
-    List<Account> activatedAccounts = new();
+    // List<Account> activatedAccounts = new();
+    var activatedAccounts = RegisteredAccounts.GetAccounts();
 
     int choice = UserChoice.WelcomeATM();
     switch (choice)
@@ -13,8 +16,9 @@ void Bank (){
         case 2:
             AtmTransaction.CreateAccount(activatedAccounts);
             var outcome = UserChoice.ContinueOrNot();
-            if(outcome == true){
-              myAtmTransaction.RunTransaction(activatedAccounts);
+            if (outcome == true)
+            {
+                myAtmTransaction.RunTransaction(activatedAccounts);
             }
             break;
         case 3:
@@ -28,4 +32,3 @@ void Bank (){
 
 
 Bank();
-

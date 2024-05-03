@@ -33,9 +33,17 @@
     public static bool ContinueOrNot()
     {
         Console.Write("Do you want to continue transaction (yes/no): ");
-        string? response = Console.ReadLine();
+        string? response = Console.ReadLine()?.ToLower();
 
-        if (response?.ToLower() == "no")
+        List<string> yesNoOptions = new List<string> { "yes", "no", "y", "n" };
+
+        if (!yesNoOptions.Contains(response))
+        {
+            Console.WriteLine("Invalid input. Please enter either 'yes' or 'no'.");
+            return ContinueOrNot(); 
+        }
+
+        if (response == "no")
         {
             Console.WriteLine("Thank you for using Olutunde Bank.");
             return false;
@@ -43,6 +51,7 @@
 
         return true;
     }
+
 
 
     public static int WelcomeATM()

@@ -2,7 +2,7 @@
 {
     private List<Account> accounts;
     private bool AuthenticateUserAccount = true;
-    public int InputtedAccountNumber { get; set; }
+    public long InputtedAccountNumber { get; set; }
 
     public Authentication(List<Account> accounts)
     {
@@ -10,7 +10,7 @@
     }
 
 
-    private bool AuthenticateAccount(int inputAccountNumber, int inputPin)
+    private bool AuthenticateAccount(long inputAccountNumber, int inputPin)
     {
         var account = accounts.Find(acc => acc.AccountNumber == inputAccountNumber && acc.Pin == inputPin);
         return account != null;
@@ -21,7 +21,7 @@
         while (AuthenticateUserAccount)
         {
             Console.Write("Enter your 10 digit account number: ");
-            if (!int.TryParse(Console.ReadLine(), out int inputAccountNumber))
+            if (!long.TryParse(Console.ReadLine(), out long inputAccountNumber))
             {
                 Messages.EnterValidAccountNumber();
                 continue;

@@ -4,12 +4,12 @@ public class StartTransaction
     public bool createTransaction = true;
     public void RunTransaction(List<Account> activatedAccounts)
     {
-       
+
         Authentication authentication = new Authentication(activatedAccounts);
 
         while (createTransaction)
         {
-         
+
             var selectedAccount = authentication.StartAuthentication();
 
             if (selectedAccount == null)

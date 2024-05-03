@@ -22,14 +22,21 @@ public class AtmTransaction : IAtmTransaction
 
         // Generate a random 10-digit account number
         Random random = new Random();
-        int min = 100000000; 
-        int max = 999999999; 
-        long accountNumber = Convert.ToInt64(random.Next(min, max + 1));
+        long accountNumber = (long)(random.NextDouble() * 9000000000) + 1000000000;
 
         // Create the account and add it to the accounts list
-        double newBalance = 100; // Starting balance
-        Account newAccount = new Account(username, accountNumber, pin, newBalance);
+        double newBalance = 100; 
+        Account newAccount = new();
+
+        newAccount.Name = username;
+        newAccount.AccountNumber = accountNumber;
+        newAccount.Pin = pin;
+        newAccount.Balance = newBalance;
+
         accounts.Add(newAccount);
+
+        // Account newAccount = new Account(username, accountNumber, pin, newBalance);
+        // accounts.Add(newAccount);
 
         Messages.AccoutCreatedSuccessfully(accountNumber);
     }
