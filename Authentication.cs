@@ -20,17 +20,24 @@
     {
         while (AuthenticateUserAccount)
         {
-            Console.Write("Enter your account number: ");
+            Console.Write("Enter your 10 digit account number: ");
             if (!int.TryParse(Console.ReadLine(), out int inputAccountNumber))
             {
                 Messages.EnterValidAccountNumber();
                 continue;
             }
 
+            if (inputAccountNumber.ToString().Length != 10)
+            {
+                Console.WriteLine("Account number must be 10 digits");
+                continue;
+            }
+
+
             var account = accounts.Find(acc => acc.AccountNumber == inputAccountNumber);
             if (account == null)
             {
-                Console.WriteLine("Account number not found. Please try again.");
+                 Messages.AccountNotFound();
                 continue;
             }
 

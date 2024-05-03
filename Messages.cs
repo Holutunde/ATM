@@ -12,14 +12,13 @@ public class Messages
 
     public static void EnterValidPostivePin()
     {
-        Console.WriteLine("Invalid input. Please enter a valid 4 digit PIN.");
-        Console.Write("Enter your current 4 digit PIN: ");
+        Console.WriteLine("Invalid input. Please enter a valid 4 digit PIN: ");
     }
 
     public static void EnterValidAccountNumber()
     {
-        Console.WriteLine("Invalid input. Please enter a valid account number.");
-        Console.Write("Enter account number: ");
+        Console.WriteLine("Invalid input. Please enter a numeric digits.");
+       
     }
 
     public static void InvalidChoice()
@@ -37,7 +36,11 @@ public class Messages
         Console.WriteLine($"{amount} naira transferred successfully from {senderName}'s account to {receiverName}'s account.");
         Console.WriteLine($"Your new balance is: {senderBalance}");
     }
+   public static void AccoutCreatedSuccessfully(long accountNumber){
 
+        Console.WriteLine("Account created successfully!");
+        Console.WriteLine($"Your account number is: {accountNumber}");
+    }
     public static void WithdrawSuccessful(double amount, double userBalance)
     {
         Console.WriteLine($"{amount} withdrawn successfully. Your new balance is: {userBalance}");
