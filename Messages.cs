@@ -31,7 +31,7 @@ public class Messages
         Console.WriteLine("Insufficient balance");
     }
 
-    public static void TransferSuccessful(double amount, string senderName, string receiverName, double senderBalance)
+    public static void TransferSuccessful(double? amount, string? senderName, string? receiverName, double senderBalance)
     {
         Console.WriteLine($"{amount} naira transferred successfully from {senderName}'s account to {receiverName}'s account.");
         Console.WriteLine($"Your new balance is: {senderBalance}");
@@ -49,7 +49,7 @@ public class Messages
     {
         Console.WriteLine($"{amount} naira deposited successfully. Your new balance is: {userBalance}");
     }
-    public static void UpdatedPinSuccessful(string userName)
+    public static void UpdatedPinSuccessful(string? userName)
     {
         Console.WriteLine($"Pin updated successfully for account {userName}.");
     }
