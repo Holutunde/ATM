@@ -35,19 +35,23 @@
         Console.Write("Do you want to continue transaction (yes/no): ");
         string? response = Console.ReadLine()?.ToLower();
 
-        List<string> yesNoOptions = new List<string> { "yes", "no", "y", "n" };
+        List<string> yesNoOptions = new() { "yes", "no", "y", "n" };
 
-        if (!yesNoOptions.Contains(response))
+        if(response != null)
         {
-            Console.WriteLine("Invalid input. Please enter either 'yes' or 'no'.");
-            return ContinueOrNot(); 
+            if (!yesNoOptions.Contains(response))
+            {
+                Console.WriteLine("Invalid input. Please enter either 'yes' or 'no'.");
+                return ContinueOrNot(); 
+            }
+
+            if (response == "no")
+            {
+                Console.WriteLine("Thank you for using Olutunde Bank.");
+                return false;
+            }
         }
 
-        if (response == "no")
-        {
-            Console.WriteLine("Thank you for using Olutunde Bank.");
-            return false;
-        }
 
         return true;
     }
@@ -79,7 +83,7 @@
             }
             else
             {
-                Console.WriteLine("Number is not from 1 - 6. Enter a valid number.");
+                Console.WriteLine("Number is not from 1 - 3. Enter a valid number.");
             }
         }
     }

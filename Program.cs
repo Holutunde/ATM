@@ -1,8 +1,4 @@
-﻿using System.Security.Principal;
-
-void Bank()
-{
-
+﻿
     StartTransaction myAtmTransaction = new StartTransaction();
     // List<Account> activatedAccounts = new();
     var activatedAccounts = RegisteredAccounts.GetAccounts();
@@ -28,7 +24,3 @@ void Bank()
             Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
             break;
     }
-}
-
-
-Bank();

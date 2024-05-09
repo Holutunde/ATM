@@ -20,18 +20,19 @@ public class AtmTransaction : IAtmTransaction
             Messages.EnterValidPostivePin();
         }
 
-        // Generate a random 10-digit account number
-        Random random = new Random();
-        long accountNumber = (long)(random.NextDouble() * 9000000000) + 1000000000;
+
+      long  accountNumber = AtmTransaction.RandomAccountNumber();
+
 
         // Create the account and add it to the accounts list
-        double newBalance = 100; 
-        Account newAccount = new();
-
-        newAccount.Name = username;
-        newAccount.AccountNumber = accountNumber;
-        newAccount.Pin = pin;
-        newAccount.Balance = newBalance;
+        double newBalance = 100;
+        Account newAccount = new()
+        {
+            Name = username,
+            AccountNumber = accountNumber,
+            Pin = pin,
+            Balance = newBalance
+        };
 
         accounts.Add(newAccount);
 
@@ -41,6 +42,12 @@ public class AtmTransaction : IAtmTransaction
         Messages.AccoutCreatedSuccessfully(accountNumber);
     }
 
+   public static long RandomAccountNumber()
+    {      // Generate a random 10-digit account number
+        Random random = new Random();
+        long accountNumber = (long)(random.NextDouble() * 9000000000) + 1000000000;
+        return accountNumber;
+    }
     public void CheckBalance()
     {
         Messages.CheckBalanceMessage(account.Balance);
@@ -106,6 +113,7 @@ public class AtmTransaction : IAtmTransaction
                 }
 
                 accountToUpdate.Pin = newPin;
+        
                 Messages.UpdatedPinSuccessful(accountToUpdate.Name);
                 pinUpdated = true;
             }

@@ -16,7 +16,7 @@
         return account != null;
     }
 
-    public Account StartAuthentication()
+    public Account? StartAuthentication()
     {
         while (AuthenticateUserAccount)
         {
