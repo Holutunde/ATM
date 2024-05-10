@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{B7AFCB86-6373-4389-8196-B7E5783CB836}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.ATM PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../Downloads/CSharpGenericsDemo/GenericsDemo_End/ConsoleUI/WithGenerics/GenericTextFileProcessor.cs">
+    <Files>
+      <File FileName="../../../../../Downloads/CSharpGenericsDemo/GenericsDemo_End/ConsoleUI/Program.cs" Line="41" Column="60" />
+      <File FileName="../../../../../Downloads/CSharpGenericsDemo/GenericsDemo_End/ConsoleUI/WithGenerics/GenericTextFileProcessor.cs" Line="14" Column="18" />
+      <File FileName="../../../../../Downloads/CSharpGenericsDemo/GenericsDemo_End/ConsoleUI/WithoutGenerics/OriginalTextFileProcessor.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

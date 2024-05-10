@@ -34,10 +34,11 @@ public class AtmTransaction : IAtmTransaction
             Balance = newBalance
         };
 
+       
         accounts.Add(newAccount);
 
-        // Account newAccount = new Account(username, accountNumber, pin, newBalance);
-        // accounts.Add(newAccount);
+        // Add the account to the Excel sheet
+        RegisteredAccounts.AddAccount(newAccount);
 
         Messages.AccoutCreatedSuccessfully(accountNumber);
     }
@@ -115,6 +116,9 @@ public class AtmTransaction : IAtmTransaction
                 accountToUpdate.Pin = newPin;
         
                 Messages.UpdatedPinSuccessful(accountToUpdate.Name);
+
+                RegisteredAccounts.UpdateAccount(accountToUpdate);
+
                 pinUpdated = true;
             }
             else
