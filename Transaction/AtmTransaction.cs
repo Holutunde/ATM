@@ -2,11 +2,11 @@
 
 public class AtmTransaction : IAtmTransaction
 {
-    private Account account;
+    private readonly IAccount account;
 
-    public AtmTransaction(Account account)
+    public AtmTransaction(IAccount account)
     {
-        this.account = account;
+       this.account = account;
     }
     public static void CreateAccount(List<Account> accounts)
     {
@@ -21,8 +21,10 @@ public class AtmTransaction : IAtmTransaction
         }
 
 
-      long  accountNumber = AtmTransaction.RandomAccountNumber();
+       long  accountNumber = AtmTransaction.RandomAccountNumber();
 
+        DateTime currentDate = DateTime.Now;
+        var newDate =  currentDate.ToShortDateString();
 
         // Create the account and add it to the accounts list
         double newBalance = 100;
@@ -31,7 +33,8 @@ public class AtmTransaction : IAtmTransaction
             Name = username,
             AccountNumber = accountNumber,
             Pin = pin,
-            Balance = newBalance
+            Balance = newBalance,
+            OpeningDate = DateTime.Now
         };
 
        
@@ -85,6 +88,9 @@ public class AtmTransaction : IAtmTransaction
         }
 
         account.Balance -= amount;
+
+        RegisteredAccounts.UpdateAccount(account);
+        
         Messages.WithdrawSuccessful(amount, account.Balance);
     }
 
@@ -130,44 +136,57 @@ public class AtmTransaction : IAtmTransaction
 
     public void TransferMoney(List<Account> accounts)
     {
-        Console.Write("Enter account number to transfer to: ");
-        int targetAccountNumber;
-        while (!int.TryParse(Console.ReadLine(), out targetAccountNumber))
+        while (true)
         {
-            Messages.EnterValidAccountNumber();
+            Console.Write("Enter account number to transfer to: ");
+            if (!int.TryParse(Console.ReadLine(), out int targetAccountNumber))
+            {
+                Messages.EnterValidAccountNumber();
+                continue; // Continue the loop if parsing fails
+            }
+
+            if (targetAccountNumber.ToString().Length != 10)
+            {
+                Console.WriteLine("Account number must be 10 digits");
+                continue; // Continue the loop if account number is not 10 digits
+            }
+
+            var receiverAccount = accounts.FirstOrDefault(acc => acc.AccountNumber == targetAccountNumber);
+
+            if (receiverAccount == null)
+            {
+                Messages.AccountNotFound();
+                continue; // Continue the loop if receiver account is not found
+            }
+
+            if (receiverAccount.AccountNumber == account.AccountNumber)
+            {
+                Console.WriteLine("Invalid Transfer. You cannot transfer to your own account.");
+                continue; // Continue the loop if transfer to own account is attempted
+            }
+
+            Console.Write("Enter the amount to transfer: ");
+            if (!double.TryParse(Console.ReadLine(), out double amount) || amount <= 0)
+            {
+                Messages.EnterPostiveAmount();
+                continue; // Continue the loop if amount input is invalid
+            }
+
+            if (amount > account.Balance)
+            {
+                Messages.InsufficientBalance();
+                continue; // Continue the loop if amount exceeds balance
+            }
+
+            // Perform the transfer
+            account.Balance -= amount;
+            receiverAccount.Balance += amount;
+            RegisteredAccounts.UpdateAccount(account);
+            RegisteredAccounts.UpdateAccount(receiverAccount);
+
+            Messages.TransferSuccessful(amount, account.Name, receiverAccount.Name, account.Balance);
+            break; // Exit the loop after successful transfer
         }
-
-        var receiverAccount = accounts.FirstOrDefault(acc => acc.AccountNumber == targetAccountNumber);
-
-        if (receiverAccount == null)
-        {
-            Messages.AccountNotFound();
-            return;
-        }
-
-        if (receiverAccount.AccountNumber == account.AccountNumber)
-        {
-            Console.WriteLine("Invalid Transfer. You cannot transfer to your own account.");
-            return;
-        }
-
-        Console.Write("Enter the amount to transfer: ");
-        double amount;
-        while (!double.TryParse(Console.ReadLine(), out amount) || amount <= 0)
-        {
-            Messages.EnterPostiveAmount();
-        }
-
-        if (amount > account.Balance)
-        {
-            Messages.InsufficientBalance();
-            return;
-        }
-
-        account.Balance -= amount;
-        receiverAccount.Balance += amount;
-
-        Messages.TransferSuccessful(amount, account.Name, receiverAccount.Name, account.Balance);
     }
 
 

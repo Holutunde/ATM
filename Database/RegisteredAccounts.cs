@@ -27,7 +27,7 @@ public class RegisteredAccounts
             {
                 int rowCount = worksheet.Dimension.Rows;
 
-                Console.WriteLine(rowCount);
+                // Console.WriteLine(rowCount);
                 for (int row = 2; row <= rowCount; row++) // Assuming data starts from row 2
                 {
                     Account account = new Account
@@ -35,7 +35,8 @@ public class RegisteredAccounts
                         Name = worksheet.Cells[row, 1].Value?.ToString(),
                         AccountNumber = Convert.ToInt64(worksheet.Cells[row, 2].Value),
                         Pin = Convert.ToInt32(worksheet.Cells[row, 3].Value),
-                        Balance = Convert.ToDouble(worksheet.Cells[row, 4].Value)
+                        Balance = Convert.ToDouble(worksheet.Cells[row, 4].Value),
+                
                     };
                     accounts.Add(account);
                 }
@@ -71,13 +72,15 @@ public class RegisteredAccounts
                 worksheet = package.Workbook.Worksheets.Add("Accounts");
             }
 
-            int rowCount = worksheet.Dimension?.Rows ?? 0;
-            worksheet.Cells[rowCount + 1, 1].Value = account.Name;
-            worksheet.Cells[rowCount + 1, 2].Value = account.AccountNumber;
-            worksheet.Cells[rowCount + 1, 3].Value = account.Pin;
-            worksheet.Cells[rowCount + 1, 4].Value = account.Balance;
+                
+                int rowCount = worksheet.Dimension?.Rows ?? 0;
+                worksheet.Cells[rowCount + 1, 1].Value = account.Name;
+                worksheet.Cells[rowCount + 1, 2].Value = account.AccountNumber;
+                worksheet.Cells[rowCount + 1, 3].Value = account.Pin;
+                worksheet.Cells[rowCount + 1, 4].Value = account.Balance;
+                worksheet.Cells[rowCount + 1, 5].Value = account.OpeningDate;
 
-            package.Save();
+             package.Save();
             Console.WriteLine("Account added successfully.");
         }
         catch (Exception ex)
@@ -86,7 +89,7 @@ public class RegisteredAccounts
         }
     }
 
-    public static void UpdateAccount(Account updatedAccount)
+    public static void UpdateAccount(IAccount updatedAccount)
     {
 
         FileInfo fileInfo = new FileInfo(ExcelFilePath);
@@ -122,8 +125,9 @@ public class RegisteredAccounts
             worksheet.Cells[rowIndex, 1].Value = updatedAccount.Name;
             worksheet.Cells[rowIndex, 3].Value = updatedAccount.Pin;
             worksheet.Cells[rowIndex, 4].Value = updatedAccount.Balance;
+            worksheet.Cells[rowCount + 1, 5].Value = updatedAccount.OpeningDate;
 
-            package.Save();
+        package.Save();
             Console.WriteLine("Account updated successfully.");
         }
         catch (Exception ex)

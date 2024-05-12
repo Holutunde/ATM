@@ -1,11 +1,7 @@
-﻿
-    StartTransaction myAtmTransaction = new StartTransaction();
+﻿StartTransaction myAtmTransaction = new StartTransaction();
     // List<Account> activatedAccounts = new();
 var activatedAccounts = RegisteredAccounts.GetAccounts();
-// foreach (var account in activatedAccounts)
-// {
-//     Console.WriteLine($"Name: {account.Name}, AccountNumber: {account.AccountNumber}, Pin: {account.Pin}, Balance: {account.Balance}");
-// }
+
 
 int choice = UserChoice.WelcomeATM();
 switch (choice)
@@ -28,3 +24,4 @@ switch (choice)
         Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
         break;
 }
+

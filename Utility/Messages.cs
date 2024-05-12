@@ -17,7 +17,7 @@ public class Messages
 
     public static void EnterValidAccountNumber()
     {
-        Console.WriteLine("Invalid input. Please enter a numeric digits.");
+        Console.WriteLine("Invalid input. Please enter a numeric digits. ");
        
     }
 
