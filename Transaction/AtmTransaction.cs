@@ -47,13 +47,15 @@ public class AtmTransaction : IAtmTransaction
     }
 
    public static long RandomAccountNumber()
-    {      // Generate a random 10-digit account number
+    {     
+         // Generate a random 10-digit account number
         Random random = new Random();
         long accountNumber = (long)(random.NextDouble() * 9000000000) + 1000000000;
         return accountNumber;
     }
     public void CheckBalance()
     {
+
         Messages.CheckBalanceMessage(account.Balance);
     }
 
@@ -142,13 +144,13 @@ public class AtmTransaction : IAtmTransaction
             if (!int.TryParse(Console.ReadLine(), out int targetAccountNumber))
             {
                 Messages.EnterValidAccountNumber();
-                continue; // Continue the loop if parsing fails
+                continue;
             }
 
             if (targetAccountNumber.ToString().Length != 10)
             {
                 Console.WriteLine("Account number must be 10 digits");
-                continue; // Continue the loop if account number is not 10 digits
+                continue;
             }
 
             var receiverAccount = accounts.FirstOrDefault(acc => acc.AccountNumber == targetAccountNumber);
@@ -156,26 +158,26 @@ public class AtmTransaction : IAtmTransaction
             if (receiverAccount == null)
             {
                 Messages.AccountNotFound();
-                continue; // Continue the loop if receiver account is not found
+                continue;
             }
 
             if (receiverAccount.AccountNumber == account.AccountNumber)
             {
                 Console.WriteLine("Invalid Transfer. You cannot transfer to your own account.");
-                continue; // Continue the loop if transfer to own account is attempted
+                continue; 
             }
 
             Console.Write("Enter the amount to transfer: ");
             if (!double.TryParse(Console.ReadLine(), out double amount) || amount <= 0)
             {
                 Messages.EnterPostiveAmount();
-                continue; // Continue the loop if amount input is invalid
+                continue;
             }
 
             if (amount > account.Balance)
             {
                 Messages.InsufficientBalance();
-                continue; // Continue the loop if amount exceeds balance
+                continue; 
             }
 
             // Perform the transfer
@@ -185,7 +187,7 @@ public class AtmTransaction : IAtmTransaction
             RegisteredAccounts.UpdateAccount(receiverAccount);
 
             Messages.TransferSuccessful(amount, account.Name, receiverAccount.Name, account.Balance);
-            break; // Exit the loop after successful transfer
+            break;
         }
     }
 

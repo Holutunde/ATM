@@ -1,4 +1,4 @@
-﻿public class Account : IAccount
+﻿public class Account:IAccount
 {
     public string? Name { get; set; }
     public long AccountNumber { get; set; }

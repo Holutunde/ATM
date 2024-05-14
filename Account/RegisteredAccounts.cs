@@ -28,7 +28,7 @@ public class RegisteredAccounts
                 int rowCount = worksheet.Dimension.Rows;
 
                 // Console.WriteLine(rowCount);
-                for (int row = 2; row <= rowCount; row++) // Assuming data starts from row 2
+                for (int row = 2; row <= rowCount; row++)
                 {
                     Account account = new Account
                     {
@@ -63,6 +63,7 @@ public class RegisteredAccounts
         }
 
         FileInfo fileInfo = new FileInfo(ExcelFilePath);
+        
         try
         {
             using ExcelPackage package = new ExcelPackage(fileInfo);

@@ -10,7 +10,7 @@ switch (choice)
         myAtmTransaction.RunTransaction(activatedAccounts);
         break;
     case 2:
-        AtmTransaction.CreateAccount(activatedAccounts);
+       AtmTransaction.CreateAccount(activatedAccounts);
         var outcome = UserChoice.ContinueOrNot();
         if (outcome == true)
         {
