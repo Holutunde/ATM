@@ -45,7 +45,7 @@
                 return ContinueOrNot(); 
             }
 
-            if (response == "no")
+            if (response == "no" || response == "n")
             {
                 Console.WriteLine("Thank you for using Olutunde Bank.");
                 return false;
@@ -83,7 +83,7 @@
             }
             else
             {
-                Console.WriteLine("Number is not from 1 - 3. Enter a valid number.");
+                Console.WriteLine("Input is not from 1 - 3. Enter a valid number.");
             }
         }
     }

@@ -21,7 +21,7 @@ switch (choice)
         Console.WriteLine("Thank you for using Olutunde Bank.");
         break;
     default:
-        Console.WriteLine("Invalid choice. Please enter a number from 1 to 6.");
+        Console.WriteLine("Invalid choice. Please enter a number from 1 to 3.");
         break;
 }
 

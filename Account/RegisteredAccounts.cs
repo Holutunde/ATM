@@ -63,7 +63,7 @@ public class RegisteredAccounts
         }
 
         FileInfo fileInfo = new FileInfo(ExcelFilePath);
-        
+
         try
         {
             using ExcelPackage package = new ExcelPackage(fileInfo);
@@ -79,7 +79,7 @@ public class RegisteredAccounts
                 worksheet.Cells[rowCount + 1, 2].Value = account.AccountNumber;
                 worksheet.Cells[rowCount + 1, 3].Value = account.Pin;
                 worksheet.Cells[rowCount + 1, 4].Value = account.Balance;
-                worksheet.Cells[rowCount + 1, 5].Value = account.OpeningDate;
+                worksheet.Cells[rowCount + 1, 5].Value = account.OpeningDate.ToString("M/d/yyyy h:mm:ss tt");
 
              package.Save();
             Console.WriteLine("Account added successfully.");

@@ -15,7 +15,7 @@ public class AtmTransaction : IAtmTransaction
 
         Console.Write("Enter your 4-digit PIN: ");
         int pin;
-        while (!int.TryParse(Console.ReadLine(), out pin) || pin < 1000 || pin > 9999)
+        while (!int.TryParse(Console.ReadLine(), out pin) || pin.ToString().Length != 4 )
         {
             Messages.EnterValidPostivePin();
         }
@@ -103,8 +103,8 @@ public class AtmTransaction : IAtmTransaction
         while (!pinUpdated)
         {
             Console.Write("Enter your current 4 digit PIN: ");
-            int oldPin;
-            if (!int.TryParse(Console.ReadLine(), out oldPin))
+         
+            if (!int.TryParse(Console.ReadLine(), out int oldPin))
             {
                 Messages.EnterValidPostivePin();
                 continue;
@@ -115,7 +115,7 @@ public class AtmTransaction : IAtmTransaction
             {
                 Console.Write("Enter your new 4 digit PIN: ");
                 int newPin;
-                if (!int.TryParse(Console.ReadLine(), out newPin))
+                while (!int.TryParse(Console.ReadLine(), out newPin) || newPin.ToString().Length != 4)
                 {
                     Messages.EnterValidPostivePin();
                     continue;
